@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// new RB-tree
+// 1. new RB-tree
 rbtree *new_rbtree(void) {
   rbtree *p = (rbtree *)calloc(1, sizeof(rbtree));
   // TODO: initialize struct if needed
@@ -12,8 +12,9 @@ rbtree *new_rbtree(void) {
 
   return p;
 }
+// end of 1.
 
-// delete RB-tree
+// 2. delete RB-tree
 void free_walk(node_t *x, node_t *nil){
   if (x != nil){
     free_walk(x->left, nil);
@@ -28,8 +29,9 @@ void delete_rbtree(rbtree *t) {
   free(t->nil);
   free(t);
 }
+// end of 2.
 
-// insert node
+// 3. insert node
 void left_rotate(rbtree *t, node_t *x){
   node_t *y = x->right;
   
@@ -158,8 +160,9 @@ node_t *rbtree_insert(rbtree *t, const key_t key) {
   
   return z;
 }
+// end of 3.
 
-// find node
+// 4. find node
 node_t *rbtree_find(const rbtree *t, const key_t key) {
   // TODO: implement find
   node_t *x = t->root;
@@ -173,8 +176,9 @@ node_t *rbtree_find(const rbtree *t, const key_t key) {
   if (x == t->nil) { return NULL; }
   else { return x; }
 }
+// end of 4.
 
-// min, max
+// 5, 6. min, max
 node_t *rbtree_min(const rbtree *t) {
   // TODO: implement find
   node_t *x = t->root;
@@ -191,8 +195,9 @@ node_t *rbtree_max(const rbtree *t) {
   }
   return x;
 }
+// end of 5, 6.
 
-// erase node
+// 7. erase node
 // node_t *subtree_min(node_t *x, node_t *nil){
 //   while (x->left != nil) {
 //     x = x->left;
@@ -313,11 +318,12 @@ int rbtree_erase(rbtree *t, node_t *z) {
   if (y_original_color == RBTREE_BLACK) {
     rbtree_erase_fixup(t,x);
   }
-
+  free(z);
   return 0;
 }
+// end of 7.
 
-// to array
+// 8. to array
 void ascending_array_walk(node_t *x, node_t *nil, key_t *arr, int *idx, const size_t n){
   if (x != nil && *idx < n) {
     ascending_array_walk(x->left, nil, arr, idx, n);
@@ -333,3 +339,4 @@ int rbtree_to_array(const rbtree *t, key_t *arr, const size_t n) {
   free(idx);
   return 0;
 }
+// end of 8.
