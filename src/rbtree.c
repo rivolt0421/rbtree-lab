@@ -22,7 +22,6 @@ void free_walk(node_t *x, node_t *nil){
     free(x);
   }
 }
-
 void delete_rbtree(rbtree *t) {
   // TODO: reclaim the tree nodes's memory
   free_walk(t->root, t->nil);
@@ -78,7 +77,6 @@ void right_rotate(rbtree *t, node_t *y){
   x->right = y;
   y->parent = x;
 }
-
 void rbtree_insert_fixup(rbtree *t, node_t *z){
   node_t *y; // z의 삼촌 y.
   while (z->parent->color == RBTREE_RED) {
@@ -123,7 +121,6 @@ void rbtree_insert_fixup(rbtree *t, node_t *z){
   }
   t->root->color = RBTREE_BLACK;
 }
-
 node_t *rbtree_insert(rbtree *t, const key_t key) {
   // TODO: implement insert
   node_t *y = t->nil;
@@ -198,12 +195,6 @@ node_t *rbtree_max(const rbtree *t) {
 // end of 5, 6.
 
 // 7. erase node
-// node_t *subtree_min(node_t *x, node_t *nil){
-//   while (x->left != nil) {
-//     x = x->left;
-//   }
-//   return x;
-// }
 void rbtree_transplant(rbtree *t, node_t *u, node_t *v){
   if (u->parent == t->nil) {
     t->root = v;
