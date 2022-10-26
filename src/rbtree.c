@@ -324,10 +324,9 @@ void ascending_array_walk(node_t *x, node_t *nil, key_t *arr, int *idx, const si
 }
 int rbtree_to_array(const rbtree *t, key_t *arr, const size_t n) {
   // TODO: implement to_array
-  int * idx = (int *)calloc(1, sizeof(int));
-  *idx = 0;
+  int i = 0;
+  int * idx = &i;
   ascending_array_walk(t->root, t->nil, arr, idx, n);
-  free(idx);
   return 0;
 }
 // end of 8.
